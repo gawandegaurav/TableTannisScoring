@@ -4,29 +4,29 @@ namespace TableTennis.Console.Services
 {
     public class TableTennisGameService : ITableTennisGameService
     {
-        private TableTennisGame game;
+        private TableTennisGame _game;
         public TableTennisGameService()
         {
         }
 
         public void StartGame(Player PlayerOne, Player PlayerTwo)
         {
-            game = new TableTennisGame(PlayerOne, PlayerTwo);
+            _game = new TableTennisGame(PlayerOne, PlayerTwo);
         }
 
         public void UpdateScore(bool isPointForPlayerOne)
         {
-            game.UpdateScore(isPointForPlayerOne);
+            _game.UpdateScore(isPointForPlayerOne);
         }
 
-        public bool CanEndGame()
+        public bool HasWinner()
         {
-            return game.CanEndGame();
+            return _game.HasWinner();
         }
 
         public Player GetWinner()
         {
-            return game.GetWinner();
+            return _game.GetWinner();
         }
     }
 }

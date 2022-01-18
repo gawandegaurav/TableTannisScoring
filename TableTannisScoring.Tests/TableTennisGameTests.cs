@@ -6,17 +6,16 @@ namespace TableTennis.Tests
     [TestClass]
     public class TableTennisGameTests
     {
-        private readonly Player PlayerOne;
-        private readonly Player PlayerTwo;
+        private readonly Player _playerOne;
+        private readonly Player _playerTwo;
         private const string PlayerOneName = "PlayerOne";
         private const string PlayerTwoName = "PlayerTwo";
-
         private const bool PointToPlayerOne = true;
 
         public TableTennisGameTests()
         {
-            PlayerOne = new Player(PlayerOneName);
-            PlayerTwo = new Player(PlayerTwoName);
+            _playerOne = new Player(PlayerOneName);
+            _playerTwo = new Player(PlayerTwoName);
         }
 
         [TestMethod]
@@ -24,9 +23,9 @@ namespace TableTennis.Tests
         {
             // Arrange
 
-            PlayerOne.Score = 10;
-            PlayerTwo.Score = 5;
-            var game = new TableTennisGame(PlayerOne, PlayerTwo);
+            _playerOne.Score = 10;
+            _playerTwo.Score = 5;
+            var game = new TableTennisGame(_playerOne, _playerTwo);
             game.UpdateScore(PointToPlayerOne);
 
             // Act
@@ -45,16 +44,16 @@ namespace TableTennis.Tests
         {
             // Arrange
 
-            PlayerOne.Score = 9;
-            PlayerTwo.Score = 10;
+            _playerOne.Score = 9;
+            _playerTwo.Score = 10;
 
-            var game = new TableTennisGame(PlayerOne, PlayerTwo);
+            var game = new TableTennisGame(_playerOne, _playerTwo);
             game.UpdateScore(PointToPlayerOne);
             game.UpdateScore(PointToPlayerOne);
 
             // Act
 
-            var result = game.CanEndGame();
+            var result = game.HasWinner();
 
             // Assert
 
@@ -66,10 +65,10 @@ namespace TableTennis.Tests
         {
             // Arrange
 
-            PlayerOne.Score = 10;
-            PlayerTwo.Score = 10;
+            _playerOne.Score = 10;
+            _playerTwo.Score = 10;
 
-            var game = new TableTennisGame(PlayerOne, PlayerTwo);
+            var game = new TableTennisGame(_playerOne, _playerTwo);
             game.UpdateScore(PointToPlayerOne);
             game.UpdateScore(PointToPlayerOne);
 
@@ -89,10 +88,10 @@ namespace TableTennis.Tests
         {
             // Arrange
 
-            PlayerOne.Score = 20;
-            PlayerTwo.Score = 20;
+            _playerOne.Score = 20;
+            _playerTwo.Score = 20;
 
-            var game = new TableTennisGame(PlayerOne, PlayerTwo);
+            var game = new TableTennisGame(_playerOne, _playerTwo);
 
             game.UpdateScore(PointToPlayerOne);
 

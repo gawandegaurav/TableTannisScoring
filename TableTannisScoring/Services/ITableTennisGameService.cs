@@ -8,7 +8,7 @@ namespace TableTennis.Console.Services
 
         void UpdateScore(bool pointToPlayerOne);
 
-        bool CanEndGame();
+        bool HasWinner();
 
         Player GetWinner();
     }

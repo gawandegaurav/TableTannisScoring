@@ -3,71 +3,71 @@ namespace TableTennis.Console.Models
 {
     public class TableTennisGame
     {
-        private readonly Player PlayerOne;
-        private readonly Player PlayerTwo;
-        private Player Winner;
-        private bool Need2PointsLead;
-        private bool HasWinner;
+        private readonly Player _playerOne;
+        private readonly Player _playerTwo;
+        private Player _winner;
+        private bool _need2PointsLead;
+        private bool _hasWinner;
 
         public TableTennisGame(Player playerOne, Player playerTwo)
         {
-            PlayerOne = playerOne;
-            PlayerTwo = playerTwo;
+            _playerOne = playerOne;
+            _playerTwo = playerTwo;
         }
 
         public Player GetWinner()
         {
-            return Winner;
+            return _winner;
         }
 
-        public bool CanEndGame()
+        public bool HasWinner()
         {
-            return HasWinner;
+            return _hasWinner;
         }
 
         public void UpdateScore(bool isPointForPlayerOne)
         {
             if (isPointForPlayerOne)
             {
-                PlayerOne.Score++;
+                _playerOne.Score++;
             }
             else
             {
-                PlayerTwo.Score++;
+                _playerTwo.Score++;
             }
 
-            HasWinner = GameHasWinner();
-            System.Console.WriteLine($"{PlayerOne.Name} - {PlayerOne.Score}  {PlayerTwo.Name} - {PlayerTwo.Score}");
+            _hasWinner = GameHasWinner();
+            System.Console.WriteLine($"{_playerOne.Name} - {_playerOne.Score}  {_playerTwo.Name} - {_playerTwo.Score}");
         }
 
         private bool GameHasWinner()
         {
             CheckForTie();
 
-            var playerOneScore = PlayerOne.Score;
-            var playerTwoScore = PlayerTwo.Score;
+            var playerOneScore = _playerOne.Score;
+            var playerTwoScore = _playerTwo.Score;
 
-            if (Need2PointsLead)
+            if (_need2PointsLead)
             {
                 if (playerOneScore - playerTwoScore == Constant.PointDifferenceToWin)
                 {
-                    Winner = PlayerOne;
+                    _winner = _playerOne;
                     return true;
                 }
                 else if (playerTwoScore - playerOneScore == Constant.PointDifferenceToWin)
                 {
-                    Winner = PlayerTwo;
+                    _winner = _playerTwo;
                     return true;
                 }
             }
             else if (Constant.WinningScore.Contains(playerOneScore))
             {
-                Winner = PlayerOne;
+                _winner = _playerOne;
                 return true;
             }
             else if (Constant.WinningScore.Contains(playerTwoScore))
             {
-                Winner = PlayerTwo;
+                _winner = _playerTwo;
                 return true;
             }
 
@@ -76,16 +76,16 @@ namespace TableTennis.Console.Models
 
         private void CheckForTie()
         {
-            var isTieAt10Points = PlayerOne.Score == Constant.TiePoint10 && PlayerTwo.Score == Constant.TiePoint10;
-            var isTieAt20Points = PlayerOne.Score == Constant.TiePoint20 && PlayerTwo.Score == Constant.TiePoint20;
+            var isTieAt10Points = _playerOne.Score == Constant.TiePoint10 && _playerTwo.Score == Constant.TiePoint10;
+            var isTieAt20Points = _playerOne.Score == Constant.TiePoint20 && _playerTwo.Score == Constant.TiePoint20;
 
             if (isTieAt10Points)
             {
-                Need2PointsLead = true;
+                _need2PointsLead = true;
             }
             else if (isTieAt20Points)
             {
-                Need2PointsLead = false;
+                _need2PointsLead = false;
             }
         }
     }

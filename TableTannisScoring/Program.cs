@@ -39,7 +39,7 @@ namespace TableTennis.Console
 
                 service.UpdateScore(isPointForPlayerOne);
 
-                if (service.CanEndGame())
+                if (service.HasWinner())
                 {
                     winner = service.GetWinner();
                     break;
