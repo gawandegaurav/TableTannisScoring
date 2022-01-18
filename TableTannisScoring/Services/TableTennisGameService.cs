@@ -5,6 +5,7 @@ namespace TableTennis.Console.Services
     public class TableTennisGameService : ITableTennisGameService
     {
         private TableTennisGame _game;
+
         public TableTennisGameService()
         {
         }
@@ -12,6 +13,11 @@ namespace TableTennis.Console.Services
         public void StartGame(Player PlayerOne, Player PlayerTwo)
         {
             _game = new TableTennisGame(PlayerOne, PlayerTwo);
+        }
+
+        public Player ServingPlayer()
+        {
+            return _game.GetServingPlayer();
         }
 
         public void UpdateScore(bool isPointForPlayerOne)

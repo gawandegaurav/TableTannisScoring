@@ -8,6 +8,7 @@ namespace TableTennis.Console.Models
         private Player _winner;
         private bool _need2PointsLead;
         private bool _hasWinner;
+        private int _serviceRemaining = 0;
 
         public TableTennisGame(Player playerOne, Player playerTwo)
         {
@@ -25,6 +26,23 @@ namespace TableTennis.Console.Models
             return _hasWinner;
         }
 
+        public Player GetServingPlayer()
+        {
+            _serviceRemaining++;
+
+            if (_serviceRemaining <= Constant.NumberOfConsicutiveServices)
+            {
+                return _playerOne;
+            }
+
+            if (_serviceRemaining == Constant.NumberOfConsicutiveServices * 2)
+            {
+                _serviceRemaining = 0;
+            }
+
+            return _playerTwo;
+        }
+
         public void UpdateScore(bool isPointForPlayerOne)
         {
             if (isPointForPlayerOne)
@@ -37,7 +55,7 @@ namespace TableTennis.Console.Models
             }
 
             _hasWinner = GameHasWinner();
-            System.Console.WriteLine($"{_playerOne.Name} - {_playerOne.Score}  {_playerTwo.Name} - {_playerTwo.Score}");
+            System.Console.WriteLine($"Score -> {_playerOne.Name} - {_playerOne.Score}  {_playerTwo.Name} - {_playerTwo.Score} \n");
         }
 
         private bool GameHasWinner()

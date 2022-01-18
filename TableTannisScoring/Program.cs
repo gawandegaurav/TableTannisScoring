@@ -14,7 +14,7 @@ namespace TableTennis.Console
                 var playerOne = new Player("Ram");
                 var playerTwo = new Player("Sham");
 
-                System.Console.WriteLine($"Welcome to Table tannis game between  {playerOne.Name} and {playerTwo.Name} !!");
+                System.Console.WriteLine($"\n\n Welcome to Table tannis game between  {playerOne.Name} and {playerTwo.Name} !!   \n\n");
 
                 var service = new TableTennisGameService();
 
@@ -35,6 +35,9 @@ namespace TableTennis.Console
 
             while (true)
             {
+                var servingPlayer = service.ServingPlayer();
+                System.Console.WriteLine($"Serving player {servingPlayer.Name}");
+
                 bool isPointForPlayerOne = GetPoint();
 
                 service.UpdateScore(isPointForPlayerOne);

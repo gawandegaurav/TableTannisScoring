@@ -6,6 +6,8 @@ namespace TableTennis.Console.Services
     {
         void StartGame(Player PlayerOne, Player PlayerTwo);
 
+        Player ServingPlayer();
+
         void UpdateScore(bool pointToPlayerOne);
 
         bool HasWinner();
